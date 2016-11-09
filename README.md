@@ -15,7 +15,7 @@ There are two templates within this repository on two different branches:
  * `LICENSE` — pick the right license
  * `Makefile` — so it's easy to build, run, test
  * `README.md` — global documentation for the whole service
-  * `what` is it, how to build, how to use
+  * what is it, how to build, how to use
  * `run_test.sh` — run tests of all images with a single script
 
 ### Image specific files and directories
