@@ -33,7 +33,7 @@ objects:
               - # Name of your container image. Taken from kind:ImageStream:name
             from:
               kind: ImageStreamTag
-              name: # Specify what version do you need. Usually the latest latest fedora:latest
+              name: # Specify what version do you need. Usually the latest like fedora:latest
               # Another one
               # kind: DockerImage
               # name: openshift/python-35-centos7:latest
@@ -50,7 +50,7 @@ objects:
               name: # Name. Use the same as ImageStream
               image: # Use the same as kind:ImageStream:spec:dockerImageRepository
               imagePullPolicy: Never # Never means, user will care about it. Deleting means, Update the image automaticaly
-              ports: # List which
+              ports: # List ports which are used within a container on which service is listening.
                 - containerPort: #Port1
                 - containerPort: #Port2
               volumeMounts: # Can be repeated several times
