@@ -1,0 +1,61 @@
+---
+kind: Template # Link https://docs.openshift.org/latest/dev_guide/templates.html
+apiVersion: v1
+metadata:
+  name: #specify-template-name
+labels:
+  template: #label. Prefer the same as metadata:name
+  description: #description of your template
+  tags: #optional: can be tagged for quick finding in OpenShift
+objects:
+  - kind: ImageStream
+    apiVersion: v1
+    metadata:
+      name: #name of you docker image
+    spec:
+      dockerImageRepository: # specify docker image. Either name in your docker repository or reference to github.io
+      # example: helloworld:latest which is visible from your `docker images` command
+      # example: docker.io/fedora:latest
+    tags:
+      - name: latest
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
+      name: # name of your DeploymentConfig. I would prefer to use the same as Template
+    spec:
+      strategy:
+        type: Rolling
+      triggers:
+        - type: ImageChange
+          imageChangeParams:
+            automatic: true
+            containerNames:
+              - # Name of your container image. Taken from kind:ImageStream:name
+            from:
+              kind: ImageStreamTag
+              name: # Specify what version do you need. Usually the latest like fedora:latest
+              # Another one
+              # kind: DockerImage
+              # name: openshift/python-35-centos7:latest
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            name: # I would prefer to use the same as template:metadata:name
+        spec:
+          containers: # Container specification
+            - env: # This is a list
+              - name: REDIS_PASSWORD
+                value: #define a value like ${REDIS_PASSWORD}
+              name: # Name. Use the same as ImageStream
+              image: # Use the same as kind:ImageStream:spec:dockerImageRepository
+              imagePullPolicy: Never # Never means, user will care about it. Deleting means, Update the image automaticaly
+              ports: # List ports which are used within a container on which service is listening.
+                - containerPort: #Port1
+                - containerPort: #Port2
+              volumeMounts: # Can be repeated several times
+                - mountPath: #Specify mount point on the container
+                  name: #Unique name which will be used in kind:DeploymentConfig:spec:template:spec:volumes
+          volumes: # Can be repeated
+            - name: # The same as in template:spec:containers:volumeMounts:name
+              emptyDir: #If you want to persist data, specify dir on your host system. Once container is down, your data will be in the directory. If you don't need it skip it. # For more information see https://docs.openshift.org/latest/dev_guide/persistent_volumes.html
