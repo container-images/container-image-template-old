@@ -14,7 +14,7 @@ There are two templates within this repository on two different branches:
 
  * `LICENSE` — pick the right license
  * `Makefile` — so it's easy to build, run, test
- * `openshift-template.yml` - general OpenShift template
+ * `openshift-template.yml` - general OpenShift template. A postfix template https://github.com/container-images/postfix/blob/master/openshift-template.yml 
   * update it. It includes several commands what to update
  * `README.md` — global documentation for the whole service
   * what is it, how to build, how to use
