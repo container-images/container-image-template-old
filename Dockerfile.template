@@ -33,13 +33,16 @@ ADD scripts /files
 # Command which runs during `docker build`
 RUN /files/<some_bash_script>.sh
 
-# This exposes port from container to host. Specify it during `docker run` as parameter -p 25:10025
+# EXPOSE instruction exposes port from container to host.
+# Specify it during `docker run` as parameter: "-p <host_port>:<container_port>"
 EXPOSE 10025
 
 # Specify username which will be used during running container
 USER postfix
 
-# VOLUME mounts host dir into container dir. It is specified by parameter -v <host_directory>:<container_directory>
+# VOLUME instruction creates unnamed volume and mounts it to the provided path,
+# you can override this behavior by mounting
+# a selected host directory into container: "-v <host_directory>:<container_directory>"
 VOLUME ['/var/spool/postfix']
 
 # Command which will start service during command `docker run`
