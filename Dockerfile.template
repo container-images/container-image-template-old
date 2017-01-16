@@ -1,0 +1,50 @@
+FROM fedora:latest
+
+# Provide some Dockerfile description, like is mentioned below
+# Volumes:
+#  * /var/spool/postfix -
+#  * /var/log/postfix - Postfix log directory
+# Environment:
+#  * $MYHOSTNAME - Hostname for Postfix image
+# Exposed ports:
+# * 10025 - Unprivileged port used by postfix
+# Additional packages
+#  * findutils are needed in case fedora:24 is loaded from docker.io.
+
+RUN dnf install -y --setopt=tsflags=nodocs <your_package_names> && \
+    dnf -y clean all
+
+MAINTAINER "real_name" <email_adress>
+
+LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
+       version = "1.0" \
+       description="Postfix is mail transfer agent that routes and delivers mail." \
+       io.k8s.description="Postfix is mail transfer agent that routes and delivers mail." \
+       io.k8s.display-name="Postfix 3.1" \
+       io.openshift.expose-services="10025:postfix" \
+       io.openshift.tags="postfix,mail,mta"
+
+# Variable which is posted to RUN and CMD directive
+ENV POSTFIX_SMTP_PORT=10025
+
+# Directive adds files from a directory (e.g. scripts) in current directory to a container directory like /files
+ADD scripts /files
+
+# Command which runs during `docker build`
+RUN /files/<some_bash_script>.sh
+
+# EXPOSE instruction exposes port from container to host.
+# Specify it during `docker run` as parameter: "-p <host_port>:<container_port>"
+EXPOSE 10025
+
+# Specify username which will be used during running container
+USER postfix
+
+# VOLUME instruction creates unnamed volume and mounts it to the provided path,
+# you can override this behavior by mounting
+# a selected host directory into container: "-v <host_directory>:<container_directory>"
+VOLUME ['/var/spool/postfix']
+
+# Command which will start service during command `docker run`
+CMD ["/files/<your_script>.sh"]
+
