@@ -3,10 +3,10 @@ kind: Template # Link https://docs.openshift.org/latest/dev_guide/templates.html
 apiVersion: v1
 metadata:
   name: #specify-template-name
-labels:
-  template: #label. Prefer the same as metadata:name
-  description: #description of your template
-  tags: #optional: can be tagged for quick finding in OpenShift
+  labels:
+    template: #label. Prefer the same as metadata:name
+    description: #description of your template
+    tags: #optional: can be tagged for quick finding in OpenShift
 objects:
   - kind: ImageStream
     apiVersion: v1
