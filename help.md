@@ -15,7 +15,7 @@ it could describe how to use it with docker, oc, atomic, runc or other commands.
 
 To get the <container_name> container image on your local system, run the following:
 
-    docker pull hub.docker.io/<container_name> 
+    docker pull <registry_address>/<container_name>
 
    
 # ENVIRONMENT VARIABLES
