@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:25
 
 # Provide some Dockerfile description, like is mentioned below
 # Volumes:
@@ -17,8 +17,13 @@ RUN dnf install -y --setopt=tsflags=nodocs <your_package_names> && \
 MAINTAINER "real_name" <email_adress>
 
 LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
-       version = "1.0" \
+       name="Postfix 3.1" \
+       version="1.0" \
+       Release="0.1" \
        description="Postfix is mail transfer agent that routes and delivers mail." \
+       vendor="Fedora Project" \
+       Org.fedoraproject.component="postfix" \
+       authoritative-source-url="registry.fedoraproject.org" \
        io.k8s.description="Postfix is mail transfer agent that routes and delivers mail." \
        io.k8s.display-name="Postfix 3.1" \
        io.openshift.expose-services="10025:postfix" \
