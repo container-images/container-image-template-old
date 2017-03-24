@@ -1,9 +1,9 @@
-.PHONY: build build-x.y build-x.z run defult
+.PHONY: build build-x.y build-x.z run default test
 
 IMAGE_NAME = image
 
 
-defult: run
+default: run
 
 build: build-x.y build-x.z
 
