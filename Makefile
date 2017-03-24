@@ -1,4 +1,4 @@
-.PHONY: build build-x.y build-x.z run defult
+.PHONY: build build-x.y build-x.z run default
 
 IMAGE_NAME = image
 
