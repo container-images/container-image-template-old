@@ -1,9 +1,9 @@
-.PHONY: build run defult
+.PHONY: build run default test
 
 IMAGE_NAME = image
 
 
-defult: run
+default: run
 
 build:
 	docker build --tag=$(IMAGE_NAME) .
