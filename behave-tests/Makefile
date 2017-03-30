@@ -1,0 +1,2 @@
+all:
+    MODULE=docker behave

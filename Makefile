@@ -18,4 +18,5 @@ run: build
 	docker run -d $(IMAGE_NAME):x.z
 
 test:
-	run_test.sh
+	cd tests; make all
+	cd behave-tests; make all
