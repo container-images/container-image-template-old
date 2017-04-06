@@ -1,7 +1,7 @@
 .PHONY: build build-x.y build-x.z run defult
 
 IMAGE_NAME = image
-
+MODULEMDURL=file://your_module_name.yaml
 
 defult: run
 
@@ -18,6 +18,5 @@ run: build
 	docker run -d $(IMAGE_NAME):x.z
 
 test:
-	cd tests; MODULE=docker URL="docker=$(IMAGE_NAME)" make all
-	cd tests; MODULE=rpm URL="docker=$(IMAGE_NAME)" make all
-	cd behave-tests; MODULE=docker make all
+	cd tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
+	cd behave-tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
