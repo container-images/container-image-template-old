@@ -1,2 +1,2 @@
 all:
-    MODULE=docker behave
+    behave

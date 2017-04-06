@@ -18,5 +18,6 @@ run: build
 	docker run -d $(IMAGE_NAME):x.z
 
 test:
-	cd tests; make all
-	cd behave-tests; make all
+	cd tests; MODULE=docker URL="docker=$(IMAGE_NAME)" make all
+	cd tests; MODULE=rpm URL="docker=$(IMAGE_NAME)" make all
+	cd behave-tests; MODULE=docker make all
