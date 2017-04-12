@@ -1,7 +1,7 @@
 .PHONY: build build-x.y build-x.z run default test
 
 IMAGE_NAME = image
-
+MODULEMDURL=file://your_module_name.yaml
 
 default: run
 
@@ -18,4 +18,5 @@ run: build
 	docker run -d $(IMAGE_NAME):x.z
 
 test:
-	run_test.sh
+	cd tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
+	cd behave-tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
