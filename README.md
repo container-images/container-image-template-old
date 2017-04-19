@@ -19,7 +19,7 @@ There are two templates within this repository on two different branches:
  * `README.md` — global documentation for the whole service
   * what is it, how to build, how to use
  * `run_test.sh` — run tests of all images with a single script
-
+ * `help.md` - Container manual page. Use the ```go-md2man``` command to convert it : `go-md2man -in help.md -out help.man` 
 ### Image specific files and directories
 
  * `Dockerfile` — default Dockerfile, should be based on Fedora now (will likely change in future)
