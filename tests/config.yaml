@@ -1,0 +1,56 @@
+document: modularity-testing
+version: 1
+# your module name
+name: memcached
+source: https://github.com/container-images/memcached.git
+modulemd-url: http://raw.githubusercontent.com/container-images/memcached/master/memcached.yaml
+service:
+    # define on which service point service listens
+    port: 11211
+packages:
+    rpms:
+        # define list of provided packages should be indentical with modulemd.api section.
+        - memcached
+        - perl-Carp
+testdependecies:
+    rpms:
+        #define depent testing packages which needs to be installed
+        - nc
+
+module:
+    docker:
+        # define how to start docker image with all parameters
+        start: "docker run -it -e CACHE_SIZE=128 -p 11211:11211"
+        # specify labels and description.
+        labels:
+            description: "memcached is a high-performance, distributed memory"
+            io.k8s.description: "memcached is a high-performance, distributed memory"
+        # Specify where is source code
+        source: https://github.com/container-images/memcached.git
+        # Specify where is docker hub repo
+        container: docker.io/phracek/memcached
+    rpm:
+        # specify how to start service
+        start: systemctl start memcached
+        # specify how to stop service
+        stop: systemctl stop memcached
+        # Specify how to check service
+        status: systemctl status memcached
+        # Repos where to find Fedora installation and module repo
+        repos:
+          - http://mirror.vutbr.cz/fedora/releases/25/Everything/x86_64/os/
+          - https://phracek.fedorapeople.org/memcached-module-repo/
+
+test:
+    processrunning:
+        # Test if memcached process is running
+        - 'ls  /proc/*/exe -alh | grep memcached'
+testhost:
+    selfcheck:
+        # test if container is listenning on port 11211
+        - 'echo errr | nc localhost 11211'
+        - 'echo set AAA 0 4 2 | nc localhost 11211'
+        - 'echo get AAA | nc localhost 11211'
+    selcheckError:
+        # Error test
+        - 'echo errr | nc localhost 11211 |grep ERROR'
