@@ -1,4 +1,4 @@
-FROM fedora:25
+FROM registry.fedoraproject.org/fedora:26
 
 # Provide some Dockerfile description, like is mentioned below
 # Volumes:
@@ -11,26 +11,29 @@ FROM fedora:25
 # Additional packages
 #  * findutils are needed in case fedora:24 is loaded from docker.io.
 
-RUN dnf install -y --setopt=tsflags=nodocs <your_package_names> && \
-    dnf -y clean all
-
-MAINTAINER "real_name" <email_adress>
-
-LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
-       name="Postfix 3.1" \
-       version="1.0" \
-       Release="0.1" \
+LABEL MAINTAINER "real_name" <email_adress>
+# Variable which is posted to RUN and CMD directive
+ENV POSTFIX_SMTP_PORT=10025
+ENV NAME=mycontainer VERSION=0 RELEASE=1 ARCH=x86_64
+LABEL  summary="Postfix is a Mail Transport Agent (MTA)." \
+       com.redhat.component="$NAME" \
+       version="$VERSION" \
+       release="$RELEASE.$DISTTAG" \
+       architecture="$ARCH" \
+       usage="docker run -p 9000:9000 f26/mycontainer" \
+       help="Runs mycontainer, which listens on port 9000 and tells you how awesome it is. No dependencies." \
        description="Postfix is mail transfer agent that routes and delivers mail." \
        vendor="Fedora Project" \
-       Org.fedoraproject.component="postfix" \
+       org.fedoraproject.component="postfix" \
        authoritative-source-url="registry.fedoraproject.org" \
        io.k8s.description="Postfix is mail transfer agent that routes and delivers mail." \
        io.k8s.display-name="Postfix 3.1" \
        io.openshift.expose-services="10025:postfix" \
        io.openshift.tags="postfix,mail,mta"
 
-# Variable which is posted to RUN and CMD directive
-ENV POSTFIX_SMTP_PORT=10025
+RUN dnf install -y --setopt=tsflags=nodocs <your_package_names> && \
+    dnf -y clean all
+
 
 # Directive adds files from a directory (e.g. scripts) in current directory to a container directory like /files
 ADD scripts /files
