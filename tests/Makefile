@@ -1,5 +1,6 @@
-CMD=python -m avocado run --filter-by-tags=-WIP *.py *.sh
-
+CMD=avocado run
+TESTS=*.py
+MODULELINT=/usr/share/moduleframework/tools/modulelint/*.py
 #
 
 # If you have tests mentioned in config.yaml file
@@ -7,6 +8,6 @@ generate:
     generator
 
 check:
-    $(CMD)
+    $(CMD) $(TESTS) $(MODULELINT)
 
 all: generate check
