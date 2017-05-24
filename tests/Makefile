@@ -5,7 +5,7 @@ MODULELINT=/usr/share/moduleframework/tools/modulelint/*.py
 
 # If you have tests mentioned in config.yaml file
 generate:
-    generator
+    mtf-generator
 
 check:
     $(CMD) $(TESTS) $(MODULELINT)
