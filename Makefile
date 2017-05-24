@@ -17,6 +17,6 @@ run: build
 	docker run -d $(IMAGE_NAME):x.y
 	docker run -d $(IMAGE_NAME):x.z
 
-test:
+test: build
 	cd tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
 	cd behave-tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
