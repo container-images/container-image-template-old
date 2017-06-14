@@ -1,0 +1,65 @@
+document: modularity-testing
+version: 1
+# your module name
+name: memcached
+source: https://github.com/container-images/memcached.git
+modulemd-url: http://raw.githubusercontent.com/container-images/memcached/master/memcached.yaml
+service:
+    # define on which port service listens
+    port: 11211
+packages:
+    rpms:
+        # list of packages available in each profile
+        - memcached
+        - perl-Carp
+testdependecies:
+    rpms:
+        # define dependent testing packages which needs to be installed on host
+        - nc
+
+default_module: docker
+module:
+    docker:
+        setup: echo Do magic with general config stored on host;
+               echo More magic
+        cleanup: echo Cleanup magic
+
+        # define how to start docker image with all parameters
+        start: "docker run -it -e CACHE_SIZE=128 -p 11211:11211"
+        # specify labels and description.
+        labels:
+            description: "memcached is a high-performance, distributed memory"
+            io.k8s.description: "memcached is a high-performance, distributed memory"
+        # Specify where is source code
+        source: https://github.com/container-images/memcached.git
+        # Specify where is docker hub repo
+        container: docker.io/phracek/memcached
+    rpm:
+        setup: echo Do magic with general config stored on host;
+               echo More magic
+        cleanup: echo Cleanup magic
+        # specify how to start service
+        start: systemctl start memcached
+        # specify how to stop service
+        stop: systemctl stop memcached
+        # Specify how to check service
+        status: systemctl status memcached
+        # Repos where to find Fedora installation and module repo
+        repo: https://phracek.fedorapeople.org/memcached-module-repo/
+
+# Tests run inside container
+test:
+    processrunning:
+        # Test if memcached process is running on container.
+        - 'ls  /proc/*/exe -alh | grep memcached'
+
+# Test host
+testhost:
+    selfcheck:
+        # test if container is listenning on port 11211
+        - 'echo errr | nc localhost 11211'
+        - 'echo set AAA 0 4 2 | nc localhost 11211'
+        - 'echo get AAA | nc localhost 11211'
+    selcheckError:
+        # Error test
+        - 'echo errr | nc localhost 11211 |grep ERROR'

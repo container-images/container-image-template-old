@@ -14,20 +14,21 @@ There are two templates within this repository on two different branches:
 
  * `LICENSE` — pick the right license
  * `Makefile` — so it's easy to build, run, test
- * `openshift-template.yml` - general OpenShift template. A postfix template https://github.com/container-images/postfix/blob/master/openshift-template.yml 
+ * `openshift-template.yml` - general OpenShift template. A postfix template https://github.com/container-images/postfix/blob/master/openshift-template.yml
   * update it. It includes several commands what to update
  * `README.md` — global documentation for the whole service
   * what is it, how to build, how to use
- * `run_test.sh` — run tests of all images with a single script
- * `help.md` - Container manual page. Use the ```go-md2man``` command to convert it : `go-md2man -in help.md -out help.man` 
+
 ### Image specific files and directories
 
  * `Dockerfile` — default Dockerfile, should be based on Fedora now (will likely change in future)
- * `Dockerfile.$distro` — Dockerfile for other distro, should be also built by Makefile
+ * `Makefile` - so it's easy to build, run, test
  * `examples/` — directory with examples that demonstrate the image functionality:
    * these examples should be ideally present in a form of documentation
    * code samples are welcome too
  * `files/` — this is the place where you should store configuration, helper scripts, etc.
  * `README.md` — version specific documentation
- * `test/` — these tests should verify that the image works
-
+ * `root/` - place for help files
+   * `help.md` - Container manual page. Use the ```go-md2man``` command to convert it : `go-md2man -in=help.md -out=help.1`
+   * `help.1` - Generated manual page.
+ * `tests/` — these tests should verify that the image works
