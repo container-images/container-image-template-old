@@ -1,16 +1,16 @@
 PHONY: .run .build .test
 
 run:
-	cd fedora && make run
-	cd centos && make run
-	cd rhel && make run
+	cd fedora && make run VERSION=$(VERSION)
+	cd centos && make run VERSION=$(VERSION)
+	cd rhel && make run VERSION=$(VERSION)
 
 build:
-	cd fedora && make build
-	cd centos && make build
-	cd rhel && make build
+	cd fedora && make build VERSION=$(VERSION)
+	cd centos && make build VERSION=$(VERSION)
+	cd rhel && make build VERSION=$(VERSION)
 
 run:
-	cd fedora && make test
-	cd centos && make test
-	cd rhel && make test
+	cd fedora && make test VERSION=$(VERSION)
+	cd centos && make test VERSION=$(VERSION)
+	cd rhel && make test VERSION=$(VERSION)

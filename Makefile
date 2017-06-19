@@ -12,3 +12,7 @@ run:
 
 test:
 	cd $(VERSION)/$(TARGET) && make test VERSION=$(VERSION)
+
+all:
+	cd x.y && make build VERSION=x.y
+	cd x.z && make build VERSION=x.z	
