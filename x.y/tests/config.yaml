@@ -8,14 +8,14 @@ document: modularity-testing
 version: 1
 # name of module for testing (it should be same as moduleMD yaml file without extension)
 # MANDATORY
-name: memcached
+name: image
 # link to default moduleMD file (usefull for local testing wihtout any repo)
 # env var: MODULEMDURL
 # MANDATORY (or compose-url)
-modulemd-url: https://src.fedoraproject.org/cgit/modules/memcached.git/plain/memcached.yaml
+# modulemd-url:
 # final compose done by pungi (contain also modulemd files for modules) can suppy also previous part
 # env var: COMPOSEURL
-compose-url: url_to_compose_in done in fedora
+compose-url: https://kojipkgs.fedoraproject.org/compose/latest-Fedora-Modular-26/compose/Server/x86_64/os/
 # variables what could be used in test
 service:
     port: 11211
@@ -82,4 +82,3 @@ module:
         repos:
             - https://kojipkgs.fedoraproject.org/repos/module-481d2dd61f4ae110/latest/x86_64/
             - https://kojipkgs.fedoraproject.org/repos/module-481d2dd61f4ae110/latest/x86_64/
-

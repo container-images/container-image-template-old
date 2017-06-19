@@ -9,5 +9,5 @@ run: build
 	docker run -d $(IMAGE_NAME):$(VERSION)
 
 test: build
-	cd ../tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
-	cd ../behave-tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
+	cd ../tests; MODULE=docker URL="docker=$(IMAGE_NAME)" make all
+	cd ../behave-tests; MODULE=docker URL="docker=$(IMAGE_NAME)" make all
