@@ -2,6 +2,8 @@ FROM registry.fedoraproject.org/fedora:26
 
 LABEL MAINTAINER ...
 
+ENV NAME=mycontainer VERSION=0 RELEASE=1 ARCH=x86_64
+
 LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
       com.redhat.component="$NAME" \
       version="$VERSION" \
@@ -21,4 +23,4 @@ LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
 # add help file
 COPY root /
 
-CMD ["true"]
+CMD ["bash"]

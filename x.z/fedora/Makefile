@@ -1,5 +1,6 @@
 .PHONY: build run test
 
+VERSION ?= x.z
 IMAGE_NAME = image
 
 build:
@@ -9,5 +10,5 @@ run: build
 	docker run -d $(IMAGE_NAME):$(VERSION)
 
 test: build
-	cd ../tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
+	cd ../tests; DOCKERFILE="../fedora/Dockerfile" MODULE=docker URL="docker=$(IMAGE_NAME):$(VERSION)" make all
 	cd ../behave-tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all

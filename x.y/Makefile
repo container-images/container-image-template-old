@@ -1,5 +1,7 @@
 PHONY: .run .build .test
 
+VERSION ?= x.y
+
 run:
 	cd fedora && make run VERSION=$(VERSION)
 	cd centos && make run VERSION=$(VERSION)
