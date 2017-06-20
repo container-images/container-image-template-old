@@ -1,6 +1,8 @@
-FROM rhel7
+FROM registry.access.redhat.com/rhel7
 
 LABEL MAINTAINER ...
+
+ENV NAME=mycontainer VERSION=0 RELEASE=1 ARCH=x86_64
 
 LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
       com.redhat.component="$NAME" \
@@ -18,4 +20,4 @@ LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
 # add help file
 COPY root /
 
-CMD ["true"]
+CMD ["bash"]

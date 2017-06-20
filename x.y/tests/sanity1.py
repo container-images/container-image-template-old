@@ -33,7 +33,7 @@ class SanityCheck1(module_framework.AvocadoTest):
     # in https://pagure.io/modularity-testing-framework/blob/master/f/examples/testing-module/skipTest.py
     def test3GccSkipped(self):
         # Test if gcc is not in actual profile, then skip the test
-        module_framework.skipTestIf("gcc" not in self.getActualProfile())
+        self.cancel("gcc" not in self.getActualProfile())
         self.start()
         # Check gcc version
         self.run("gcc -v")

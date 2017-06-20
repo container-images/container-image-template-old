@@ -1,4 +1,4 @@
-FROM rhel7
+FROM registry.access.redhat.com/rhel7
 
 LABEL MAINTAINER ...
 
@@ -20,4 +20,4 @@ LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
 # add help file
 COPY root /
 
-CMD ["true"]
+CMD ["bash"]
