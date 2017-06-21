@@ -22,7 +22,7 @@ There are two templates within this repository on two different branches:
 ### Image specific files and directories
 
  * `Dockerfile` — default Dockerfile, should be based on Fedora now (will likely change in future)
- * `Makefile` - so it's easy to build, run, test
+ * `Makefile` - so it's easy to build, run, test and convert help file
  * `examples/` — directory with examples that demonstrate the image functionality:
    * these examples should be ideally present in a form of documentation
    * code samples are welcome too

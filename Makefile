@@ -1,8 +1,11 @@
-.PHONY: build run default test
+.PHONY: doc build run default test
 
 VERSION ?= x.y
 
 default: run
+
+doc:
+	cd $(VERSION)/$(TARGET) && make doc VERSION=$(VERSION)
 
 build:
 	cd $(VERSION)/$(TARGET) && make build VERSION=$(VERSION)
