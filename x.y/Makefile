@@ -1,6 +1,11 @@
-PHONY: .run .build .test
+PHONY: .doc .run .build .test
 
 VERSION ?= x.y
+
+doc:
+	cd fedora && make doc VERSION=$(VERSION)
+	cd centos && make doc VERSION=$(VERSION)
+	cd rhel && make doc VERSION=$(VERSION)	
 
 run:
 	cd fedora && make run VERSION=$(VERSION)
