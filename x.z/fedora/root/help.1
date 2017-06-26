@@ -66,17 +66,29 @@ MYSQL\_PASSWORD=mypass
                 The password set for the current MySQL user.
 
 
+.SH LABELS
+.PP
+Describe LABEL settings (from the Dockerfile that created the image) that contains pertinent information.
+For containers run by atomic, that could include INSTALL, RUN, UNINSTALL, and UPDATE LABELS. Others could
+include BZComponent, Name, Version, Release, and Architecture. This section is optional.
+
+
 .SH SECURITY IMPLICATIONS
 .PP
 If you expose ports or run with privileges, note those and provide an explanation. For example:
 
 .PP
 \-d
-     Runs continuously as a daemon process in the background
+    Runs continuously as a daemon process in the background
 
 .PP
 \-p 3306:3306
-     Opens  container  port  3306  and  maps it to the same port on the Host.
+    Opens  container  port  3306  and  maps it to the same port on the Host.
+
+
+.SH HISTORY
+.PP
+Similar to a Changelog of sorts which can be as detailed as the maintainer wishes.
 
 
 .SH SEE ALSO
