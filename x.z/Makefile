@@ -1,4 +1,4 @@
-PHONY: .doc .run .build .test
+.PHONY: doc run build test
 
 VERSION ?= x.z
 
