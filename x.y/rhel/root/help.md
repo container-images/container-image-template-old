@@ -31,14 +31,24 @@ Explain all environment variables available to run the image in different ways w
 MYSQL_PASSWORD=mypass
                 The password set for the current MySQL user.
 
+# LABELS
+Describe LABEL settings (from the Dockerfile that created the image) that contains pertinent information.
+For containers run by atomic, that could include INSTALL, RUN, UNINSTALL, and UPDATE LABELS. Others could
+include BZComponent, Name, Version, Release, and Architecture. This section is optional.
+
+
 # SECURITY IMPLICATIONS
 If you expose ports or run with privileges, note those and provide an explanation. For example:
 
 -d
-     Runs continuously as a daemon process in the background
+    Runs continuously as a daemon process in the background
 
 -p 3306:3306
-     Opens  container  port  3306  and  maps it to the same port on the Host.
+    Opens  container  port  3306  and  maps it to the same port on the Host.
+
+
+# HISTORY
+Similar to a Changelog of sorts which can be as detailed as the maintainer wishes.
 
 # SEE ALSO
 
