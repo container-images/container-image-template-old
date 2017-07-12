@@ -1,58 +1,62 @@
-FROM registry.fedoraproject.org/fedora:26
+# This is a template for container-images
+# Please, replace or remove all strings with %% prefix
 
-# Provide some Dockerfile description, like is mentioned below
+FROM modularitycontainers/boltron-preview:latest
+
+# Provide some Dockerfile description 
+# %%{DOCKERFILE_DESCRIPTION}
+#
 # Volumes:
-#  * /var/spool/postfix -
-#  * /var/log/postfix - Postfix log directory
+#  * %%{VOLUME_PATH} - %%{VOLUME_DESCRIPTION}
 # Environment:
-#  * $MYHOSTNAME - Hostname for Postfix image
+#  * %%{ENV_VARIABLE} - %%{ENV_VARIABLE_DESCRIPTION}
 # Exposed ports:
-# * 10025 - Unprivileged port used by postfix
+#  * %%{PORT} - %%{PORT_DESCRIPTION}
 # Additional packages
-#  * findutils are needed in case fedora:24 is loaded from docker.io.
+#  * %%{ADDITIONAL_PACKAGE_NAME} - %%{ADDITIONAL_PACKAGE_USAGE}
 
-LABEL MAINTAINER "real_name" <email_adress>
-# Variable which is posted to RUN and CMD directive
-ENV POSTFIX_SMTP_PORT=10025
-ENV NAME=mycontainer VERSION=0 RELEASE=1 ARCH=x86_64
-LABEL summary="Postfix is a Mail Transport Agent (MTA)." \
-      com.redhat.component="$NAME" \
-      version="$VERSION" \
+LABEL MAINTAINER "%%{REAL_NAME}" <%%{EMAIL_ADDRESS}>
+
+# Enviroment variables
+ENV NAME=%%{NAME} RELEASE=%%{RELEASE} ARCH=%%{ARCH}
+
+# All following labels are mandatory
+LABEL summary="%%{SUMMARY}" \
+      name=$FGC/$NAME" \
+      version="%%{VERSION}" \
       release="$RELEASE.$DISTTAG" \
       architecture="$ARCH" \
-      usage="docker run -p 9000:9000 f26/mycontainer" \
-      help="Runs mycontainer, which listens on port 9000 and tells you how awesome it is. No dependencies." \
-      description="Postfix is mail transfer agent that routes and delivers mail." \
-      vendor="Fedora Project" \
-      org.fedoraproject.component="postfix" \
-      authoritative-source-url="registry.fedoraproject.org" \
-      io.k8s.description="Postfix is mail transfer agent that routes and delivers mail." \
-      io.k8s.display-name="Postfix 3.1" \
-      io.openshift.expose-services="10025:postfix" \
-      io.openshift.tags="postfix,mail,mta"
+      com.redhat.component="$NAME" \
+      usage="%%{USAGE}" \
+      help="%%{HELP}" \
+      description="%%{DESCRIPTION}" \
+      io.k8s.description="%%{DESCRIPTION}" \
+      io.k8s.display-name="%%{K8S_DISPLAY_NAME}" \
+      io.openshift.expose-services="%%{EXPOSE_SERVICES}" \
+      io.openshift.tags="%%{TAGS}"
 
-RUN dnf install -y --setopt=tsflags=nodocs <your_package_names> && \
+# Instalation of module packages - this solution is temporary
+RUN dnf install -y --nodocs %%{API_PACKAGES} && \
     dnf -y clean all
 
-
 # Directive adds files from a directory (e.g. scripts) in current directory to a container directory like /files
-ADD scripts /files
+ADD %%{scripts} %%{/files}
 
 # Command which runs during `docker build`
-RUN /files/<some_bash_script>.sh
+RUN %%{/files/<some_bash_script>.sh}
 
 # EXPOSE instruction exposes port from container to host.
 # Specify it during `docker run` as parameter: "-p <host_port>:<container_port>"
-EXPOSE 10025
+EXPOSE %%{PORT}
 
 # Specify username which will be used during running container
-USER postfix
+USER %%{PROCESS_UID}
 
 # VOLUME instruction creates unnamed volume and mounts it to the provided path,
 # you can override this behavior by mounting
 # a selected host directory into container: "-v <host_directory>:<container_directory>"
-VOLUME ['/var/spool/postfix']
+VOLUME [%%{VOLUME_PATH}]
 
 # Command which will start service during command `docker run`
-CMD ["/files/<your_script>.sh"]
+CMD ["%%{/files/<your_script>.sh}"]
 
