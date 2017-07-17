@@ -5,7 +5,10 @@ IMAGE_NAME = image
 
 default: run
 
-build:
+doc:
+	go-md2man -in=./root/help.md -out=./root/help.1
+
+build: doc
 	docker build --tag=$(IMAGE_NAME) .
 
 run: build
