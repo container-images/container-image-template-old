@@ -1,5 +1,7 @@
 # container-image-template
 
+[![Build Status](https://travis-ci.org/container-images/container-image-template.svg?branch=master)](https://travis-ci.org/container-images/container-image-template)
+
 This is a template of a git repository which is a source for building container images.
 
 
