@@ -16,3 +16,5 @@ env:
         - VERSION=x.z OS=rhel
 script:
         - make build VERSION=$VERSION TARGET=$OS
+notifications:
+        email: false
