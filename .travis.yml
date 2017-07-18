@@ -1,0 +1,18 @@
+language: python
+python:
+        - 3.6
+sudo: required
+services:
+        - docker
+install:
+        - 'pip install docker'
+        - 'sudo apt-get install go-md2man'
+env:
+        - VERSION=x.y OS=fedora
+        - VERSION=x.y OS=centos
+        - VERSION=x.y OS=rhel
+        - VERSION=x.z OS=fedora
+        - VERSION=x.z OS=centos
+        - VERSION=x.z OS=rhel
+script:
+        - make build VERSION=$VERSION TARGET=$OS
