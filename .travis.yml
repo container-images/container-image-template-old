@@ -16,5 +16,7 @@ env:
         - VERSION=x.z OS=rhel
 script:
         - make build VERSION=$VERSION TARGET=$OS
+        - make test-container
+        - make test-in-container
 notifications:
         email: false
