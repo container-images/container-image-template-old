@@ -18,7 +18,7 @@ run:
 test:
 	cd $(VERSION)/$(TARGET) && make test VERSION=$(VERSION)
 
-test-in-container:
+test-in-container: test-container
 	docker run --rm -ti -e VERSION=$(VERSION) -v /var/run/docker.sock:/var/run/docker.sock:Z -v ${PWD}:/src $(TEST_IMAGE_NAME)
 
 test-container:
