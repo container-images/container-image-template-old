@@ -25,11 +25,15 @@ To remove the XYZ container (not the image) from your system, run:
 
 Also, describe default configuration options (when defined): hostname, domainname, user ID run as, exposed ports, volumes, working directory, command run by default, etc.
 
+${OS_SPECIFIC_INFO}
+
 # ENVIRONMENT VARIABLES
 Explain all environment variables available to run the image in different ways without the need of rebuilding the image. Change variables on the docker command line with -e option. For example:
 
 MYSQL_PASSWORD=mypass
                 The password set for the current MySQL user.
+
+${VERSION_SPECIFIC_INFO}
 
 # LABELS
 Describe LABEL settings (from the Dockerfile that created the image) that contains pertinent information.

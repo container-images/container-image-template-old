@@ -20,6 +20,7 @@ There are two templates within this repository on two different branches:
   * update it. It includes several commands what to update
  * `README.md` — global documentation for the whole service
   * what is it, how to build, how to use
+* `root` - a directory containing `help.md` file. This serves as a base for container help page. It can be templated on per-version and per-os\_variant bases. On executing `make doc` in a `<version>/<os_variant>/` directory, it will search for `<version>/root/help.values` and `<version>/<os_variant>/root/help.values`, source these two scripts (if they exist) and run `envsubst` (environment variable substitution) to obtain `help.md` specific to the currently `make`-ed image.
 
 ### Image specific files and directories
 
