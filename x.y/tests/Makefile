@@ -8,6 +8,6 @@ generate:
 	mtf-generator
 
 check:
-	$(CMD) $(TESTS) $(MODULELINT)
+	MODULE=only_tests $(CMD) $(TESTS) $(MODULELINT)
 
 all: check
