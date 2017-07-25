@@ -2,12 +2,10 @@ FROM fedora:26
 
 RUN dnf install -y dnf-plugins-core make golang-github-cpuguy83-go-md2man && \
     dnf copr enable -y phracek/Modularity-testing-framework && \
-    dnf install -y modularity-testing-framework
+    dnf install -y modularity-testing-framework && \
+    pip2 install https://github.com/fedora-modularity/meta-test-family/archive/implement_tests_for_containers.tar.gz
 
-ENV x=y3
-RUN pip2 install https://github.com/fedora-modularity/meta-test-family/archive/implement_tests_for_containers.tar.gz
-
-RUN sed -i /etc/dnf/dnf.conf -e 's/clean_requirements_on_remove=True/clean_requirements_on_remove=False/g'
+# RUN sed -i /etc/dnf/dnf.conf -e 's/clean_requirements_on_remove=True/clean_requirements_on_remove=False/g'
 
 # RUN dnf remove -y modularity-testing-framework
 # no need to `dnf clean all` since we don't distribute this image
