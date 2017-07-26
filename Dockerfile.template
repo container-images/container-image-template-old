@@ -1,7 +1,7 @@
 # This is a template for container-images
 # Please, replace or remove all strings with %% prefix
 
-FROM modularitycontainers/boltron-preview:latest
+FROM registry.fedoraproject.org/f26-modular/boltron
 
 # Provide some Dockerfile description 
 # %%{DOCKERFILE_DESCRIPTION}
@@ -22,7 +22,7 @@ ENV NAME=%%{NAME} RELEASE=%%{RELEASE} ARCH=%%{ARCH}
 
 # All following labels are mandatory
 LABEL summary="%%{SUMMARY}" \
-      name=$FGC/$NAME" \
+      name="$FGC/$NAME" \
       version="%%{VERSION}" \
       release="$RELEASE.$DISTTAG" \
       architecture="$ARCH" \
