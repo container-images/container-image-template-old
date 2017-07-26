@@ -2,12 +2,13 @@
 
 VERSION ?= x.y
 IMAGE_NAME = image
-OS_HELP_VALUES = ./root/help.values
-VERSION_HELP_VALUES = ../root/help.values
-HELP_MD = ./root/help.md
+OS_HELP_VALUES = ./help/help.values
+VERSION_HELP_VALUES = ../help/help.values
+HELP_MD = ./help/help.md
 
 doc:
-	cp ../../root/help.md ./root/
+	mkdir -p ./root/
+	cp ../../help/help.md ./help/
 	test -f ${OS_HELP_VALUES} && source ${OS_HELP_VALUES}; \
 	test -f ${VERSION_HELP_VALUES} && source ${VERSION_HELP_VALUES}; \
 	cat ${HELP_MD} | envsubst > ${HELP_MD}.new; \
