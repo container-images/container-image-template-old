@@ -1,4 +1,4 @@
-CMD=avocado run
+CMD=avocado run --show-job-log
 TESTS=*.py
 MODULELINT=/usr/share/moduleframework/tools/modulelint/*.py
 #
@@ -8,6 +8,6 @@ generate:
 	mtf-generator
 
 check:
-	$(CMD) $(TESTS) $(MODULELINT)
+	MODULE=only_tests $(CMD) $(TESTS) $(MODULELINT)
 
 all: check

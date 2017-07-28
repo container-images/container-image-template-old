@@ -1,4 +1,4 @@
-CMD=avocado run
+CMD=avocado run --show-job-log
 TESTS=*.py
 MODULELINT=/usr/share/moduleframework/tools/modulelint/*.py
 #
