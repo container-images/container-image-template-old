@@ -22,5 +22,5 @@ run: build
 	docker run -d $(IMAGE_NAME):$(VERSION)
 
 test: build
-	cd ../tests; DOCKERFILE="../fedora/Dockerfile" MODULE=docker URL="docker=$(IMAGE_NAME):$(VERSION)" make all
-	cd ../behave-tests; MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all
+	cd ../../tests; VERSION=$(VERSION) DOCKERFILE="../fedora/Dockerfile" MODULE=docker URL="docker=$(IMAGE_NAME):$(VERSION)" make all
+	cd ../../behave-tests; VERSION=$(VERSION) MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME)" make all

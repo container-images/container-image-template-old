@@ -8,7 +8,7 @@ document: modularity-testing
 version: 1
 # name of module for testing (it should be same as moduleMD yaml file without extension)
 # MANDATORY
-name: image:x.y
+name: image
 # link to default moduleMD file (usefull for local testing wihtout any repo)
 # env var: MODULEMDURL
 # MANDATORY (or compose-url)

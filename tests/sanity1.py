@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import os
 import socket
 from avocado import main
 from avocado.core import exceptions
@@ -37,6 +38,11 @@ class SanityCheck1(module_framework.AvocadoTest):
         self.start()
         # Check gcc version
         self.run("gcc -v")
+
+    def testVersionSpecific(self):
+        version = os.environ.get('VERSION')
+        if version == 'x.y':
+            pass  # some version-specific test goes here
 
 if __name__ == '__main__':
     main()
