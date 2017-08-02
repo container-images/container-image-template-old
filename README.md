@@ -21,6 +21,7 @@ There are two templates within this repository on two different branches:
   * update it. It includes several commands what to update
  * `README.md` — global documentation for the whole service
   * what is it, how to build, how to use
+ * `tests/` — these tests should verify that the image works
 
 ### Image specific files and directories
 
@@ -34,4 +35,3 @@ There are two templates within this repository on two different branches:
  * `root/` - place for help files
    * `help.md` - Container manual page. Use the ```go-md2man``` command to convert it : `go-md2man -in=help.md -out=help.1`
    * `help.1` - Generated manual page.
- * `tests/` — these tests should verify that the image works
