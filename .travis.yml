@@ -8,13 +8,9 @@ install:
         - 'pip install docker'
         - 'sudo apt-get install go-md2man'
 env:
-        - VERSION=x.y OS=fedora
-        - VERSION=x.y OS=centos
-        - VERSION=x.y OS=rhel
-        - VERSION=x.z OS=fedora
-        - VERSION=x.z OS=centos
-        - VERSION=x.z OS=rhel
+        - VERSION=x.y
+        - VERSION=x.z
 script:
-        - make build VERSION=$VERSION TARGET=$OS
+        - make test-in-container VERSION=$VERSION
 notifications:
         email: false
