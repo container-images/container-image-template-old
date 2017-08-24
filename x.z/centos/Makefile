@@ -23,4 +23,3 @@ run: build
 
 test: build
 	cd ../../tests; VERSION=$(VERSION) DOCKERFILE="../centos/Dockerfile" MODULE=docker URL="docker=$(IMAGE_NAME):$(VERSION)" make all
-	cd ../../behave-tests; VERSION=$(VERSION) MODULEMDURL=$(MODULEMDURL) MODULE=docker URL="docker=$(IMAGE_NAME):$(VERSION)" make all
