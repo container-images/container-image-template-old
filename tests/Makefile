@@ -1,3 +1,5 @@
+# TODO: commented becasue MTF generates enormous amount of logs
+# CMD=avocado run --show-job-log
 CMD=avocado run
 TESTS=*.py
 MODULELINT=/usr/share/moduleframework/tools/modulelint/*.py
@@ -8,6 +10,6 @@ generate:
 	mtf-generator
 
 check:
-	$(CMD) $(TESTS) $(MODULELINT)
+	MODULE=docker $(CMD) $(TESTS) $(MODULELINT)
 
 all: check
