@@ -1,4 +1,6 @@
-CMD=avocado run --show-job-log
+# TODO: commented becasue MTF generates enormous amount of logs
+# CMD=avocado run --show-job-log
+CMD=avocado run
 TESTS=*.py
 MODULELINT=/usr/share/moduleframework/tools/modulelint/*.py
 #
