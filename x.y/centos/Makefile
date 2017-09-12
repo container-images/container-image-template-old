@@ -22,4 +22,4 @@ run: build
 	docker run -d $(IMAGE_NAME):$(VERSION)
 
 test: build
-	cd ../../tests; VERSION=$(VERSION) DOCKERFILE="../centos/Dockerfile" MODULE=docker URL="docker=$(IMAGE_NAME):$(VERSION)" make all
+	cd ../../tests; VERSION=$(VERSION) DOCKERFILE="../x.y/centos/Dockerfile" MODULE=docker URL="docker=$(IMAGE_NAME):$(VERSION)" make all
